@@ -34,7 +34,7 @@ public class Main {
         for (S2NetMessages.ProtoFlattenedSerializer_t s : fs.getSerializersList()) {
             for (int fi : s.getFieldsIndexList()) {
                 S2NetMessages.ProtoFlattenedSerializerField_t f = fs.getFields(fi);
-                FieldType ft = new FieldType(fs.getSymbols(f.getVarTypeSym()));
+                FieldType ft = FieldType.forString(fs.getSymbols(f.getVarTypeSym()));
                 if (!f.hasFieldSerializerNameSym()) {
                     int l = 0;
                     do {
