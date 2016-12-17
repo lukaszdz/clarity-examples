@@ -23,6 +23,7 @@ public class Main {
             //BitStreamImplementations.implementation = 1;
             //System.out.println("press key to start"); System.in.read();
             new Main().run(args);
+            //System.in.read();
         } catch (Exception e) {
             Thread.sleep(200);
             throw e;
