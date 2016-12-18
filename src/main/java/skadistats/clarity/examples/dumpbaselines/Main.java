@@ -56,7 +56,7 @@ public class Main {
             fieldReader.DEBUG_STREAM = new PrintStream(new FileOutputStream(fileName), true, "UTF-8");
             BitStream bs = BitStream.createBitStream(baselines.getValueByIndex(i));
             try {
-                EntityState state = new NestedArrayState(dtClass, dtClass.getEmptyStateArray());
+                EntityState state = new NestedArrayState(dtClass);
                 fieldReader.readFields(bs, dtClass, state, true);
                 if (bs.remaining() < 0 || bs.remaining() > 7) {
                     log.info("-- OFF: {} remaining", bs.remaining());
