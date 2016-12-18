@@ -7,7 +7,7 @@ import skadistats.clarity.decoder.bitstream.BitStream;
 import skadistats.clarity.model.DTClass;
 import skadistats.clarity.model.StringTable;
 import skadistats.clarity.model.state.EntityState;
-import skadistats.clarity.model.state.NestedArrayState;
+import skadistats.clarity.model.state.EntityStateFactory;
 import skadistats.clarity.processor.runner.Context;
 import skadistats.clarity.processor.runner.ControllableRunner;
 import skadistats.clarity.processor.sendtables.DTClasses;
@@ -56,7 +56,7 @@ public class Main {
             fieldReader.DEBUG_STREAM = new PrintStream(new FileOutputStream(fileName), true, "UTF-8");
             BitStream bs = BitStream.createBitStream(baselines.getValueByIndex(i));
             try {
-                EntityState state = new NestedArrayState(dtClass);
+                EntityState state = EntityStateFactory.createForClass(dtClass);
                 fieldReader.readFields(bs, dtClass, state, true);
                 if (bs.remaining() < 0 || bs.remaining() > 7) {
                     log.info("-- OFF: {} remaining", bs.remaining());
