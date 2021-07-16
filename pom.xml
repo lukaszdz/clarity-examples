@@ -168,6 +168,12 @@
             </properties>
         </profile>
         <profile>
+            <id>camaraderousstats</id>
+            <properties>
+                <exampleName>camaraderousstats</exampleName>
+            </properties>
+        </profile>
+        <profile>
             <id>metadata</id>
             <properties>
                 <exampleName>metadata</exampleName>
