@@ -199,9 +199,10 @@ public class Main {
 
         System.out.println(String.format("Writing %s-stats.tsv ...", args[0]));
         try (OutputStream out = new FileOutputStream(String.format("%s-stats.tsv", args[0]))) {
-            String header = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+            String header = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
                 "matchID",
                 "date",
+                "dateLong",
                 "endTime",
                 "playerName",
                 "steamID",
@@ -220,12 +221,15 @@ public class Main {
                 String playerName = entry.getKey();
                 HashMap<String, String> playerData = entry.getValue();
 
-                DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
-                format.setTimeZone(TimeZone.getTimeZone("PST"));
+                DateFormat formatFull = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+                formatFull.setTimeZone(TimeZone.getTimeZone("PST"));
+                DateFormat formatShort = new SimpleDateFormat("yyyy-MM-dd");
+                formatShort.setTimeZone(TimeZone.getTimeZone("PST"));
 
-                String tsvRow = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+                String tsvRow = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
                     playerData.get("matchID"),
-                    format.format(new Date(Long.parseLong(playerData.get("endTime")) * 1000L)),
+                    formatShort.format(new Date(Long.parseLong(playerData.get("endTime")) * 1000L)),
+                    formatFull.format(new Date(Long.parseLong(playerData.get("endTime")) * 1000L)),
                     playerData.get("endTime"),
                     playerName,
                     playerData.get("steamID"),
